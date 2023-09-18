@@ -108,6 +108,39 @@ describe('Calculator', () => {
     expect(runningTotal.textContent).toEqual('27')
   })
 
+  it('should chain multiple operations together', () => {
+    const button3 = container.getByTestId('number3');
+    const multiplyButton = container.getByTestId('operator-multiply');
+    const runningTotal = container.getByTestId('running-total');
+    const equalButton = container.getByTestId('operator-equals');
+    fireEvent.click(button3);
+    fireEvent.click(multiplyButton);
+    fireEvent.click(button3);
+    fireEvent.click(multiplyButton);
+    fireEvent.click(button3);
+    fireEvent.click(equalButton);
+    expect(runningTotal.textContent).toEqual('27')
+  })
+
+  it('should clear the running total without affecting the calculation', () => {
+    const button1 = container.getByTestId('number1');
+    const addButton = container.getByTestId('operator-add');
+    const runningTotal = container.getByTestId('running-total');
+    const equalButton = container.getByTestId('operator-equals');
+    const clearButton = container.getByTestId('clear');
+    fireEvent.click(button1);
+    fireEvent.click(addButton);
+    fireEvent.click(button1);
+    fireEvent.click(equalButton);
+    fireEvent.click(clearButton);
+    fireEvent.click(addButton);
+    fireEvent.click(button1);
+    fireEvent.click(equalButton);
+    expect(runningTotal.textContent).toEqual('3')
+  })
+
+
+
 
 
 
