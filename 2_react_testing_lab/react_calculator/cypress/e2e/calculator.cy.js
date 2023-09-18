@@ -33,6 +33,52 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '15')
   })
 
+  it('should update display of running total with results of chained multiple operations', () => {
+    cy.get('#number3').click()
+    cy.get('#operator-multiply').click()
+    cy.get('#number3').click()
+    cy.get('#operator-multiply').click()
+    cy.get('.display').should('contain', '9')
+    cy.get('#number3').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '27')
+  })
+
+  it('should update display of running total with results of chained operations showing decimal numbers', () => {
+    cy.get('#number3').click()
+    cy.get('#operator-multiply').click()
+    cy.get('#number3').click()
+    cy.get('#operator-divide').click()
+    cy.get('.display').should('contain', '9')
+    cy.get('#number5').click()
+    cy.get('#operator-multiply').click()
+    cy.get('.display').should('contain', '1.8')
+    cy.get('#number6').click()
+    cy.get('#number6').click()
+    cy.get('#operator-divide').click()
+    cy.get('.display').should('contain', '118.8')
+    cy.get('#number9').click()
+    cy.get('#number0').click()
+    cy.get('#number0').click()
+    cy.get('#number0').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '0.0132')
+  })
+
+  it('should update display of running total with results of chained operations showing decimal numbers', () => {
+    cy.get('#number3').click()
+    cy.get('#operator-subtract').click()
+    cy.get('#number5').click()
+    cy.get('#operator-subtract').click()
+    cy.get('.display').should('contain', '-2')
+    cy.get('#number5').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '-7')
+  })
+
+  
+
+
 })
 
 
