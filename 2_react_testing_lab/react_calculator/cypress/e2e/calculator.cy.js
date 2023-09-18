@@ -76,7 +76,15 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '-7')
   })
 
-  
+  it('should display "Error" in the display when a number is divided by 0', () => {
+    cy.get('#number1').click()
+    cy.get('#operator-divide').click()
+    cy.get('#number0').click()
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', 'Error')
+  })
+
+
 
 
 })
